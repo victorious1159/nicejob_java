@@ -1,0 +1,121 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/navigation"
+    app:startDestination="@id/jobsFragment">
+
+    <fragment
+        android:id="@+id/jobsFragment"
+        android:name="com.example.nicejobapplication.fragment.JobsFragment"
+        android:label="fragment_jobs"
+        tools:layout="@layout/fragment_jobs" >
+        <action
+            android:id="@+id/action_jobsFragment_to_jobDetail"
+            app:destination="@id/jobDetail" />
+        <action
+            android:id="@+id/action_jobsFragment_to_searchViewJob"
+            app:destination="@id/searchViewJob" />
+        <action
+            android:id="@+id/action_jobsFragment_to_viewMoreJob"
+            app:destination="@id/viewMoreJob" />
+    </fragment>
+    <fragment
+        android:id="@+id/corpFragment"
+        android:name="com.example.nicejobapplication.fragment.CorpFragment"
+        android:label="fragment_corp"
+        tools:layout="@layout/fragment_corp" >
+        <action
+            android:id="@+id/action_corpFragment_to_corporationDetail"
+            app:destination="@id/corporationDetail"
+            app:popUpTo="@id/corpFragment" />
+        <action
+            android:id="@+id/action_corpFragment_to_searchViewCorp"
+            app:destination="@id/searchViewCorp" />
+    </fragment>
+    <fragment
+        android:id="@+id/CVFragment"
+        android:name="com.example.nicejobapplication.fragment.CVFragment"
+        android:label="fragment_cv"
+        tools:layout="@layout/fragment_cv" >
+        <action
+            android:id="@+id/action_CVFragment_to_cvDetail2"
+            app:destination="@id/cvDetail2" />
+        <action
+            android:id="@+id/action_CVFragment_to_editCvFragment"
+            app:destination="@id/editCvFragment" />
+        <action
+            android:id="@+id/action_CVFragment_to_createCVFragment"
+            app:destination="@id/createCVFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/profileFragment"
+        android:name="com.example.nicejobapplication.fragment.ProfileFragment"
+        android:label="fragment_profile"
+        tools:layout="@layout/fragment_profile" />
+    <fragment
+        android:id="@+id/corporationDetail"
+        android:name="com.example.nicejobapplication.DetailFragment.CorporationDetail"
+        android:label="fragment_corporation_detail"
+        tools:layout="@layout/fragment_corporation_detail" >
+        <action
+            android:id="@+id/action_corporationDetail_to_jobDetail"
+            app:destination="@id/jobDetail" />
+    </fragment>
+    <fragment
+        android:id="@+id/cvDetail2"
+        android:name="com.example.nicejobapplication.DetailFragment.CvDetail"
+        android:label="fragment_cv_detail"
+        tools:layout="@layout/fragment_cv_detail" />
+    <fragment
+        android:id="@+id/editCvFragment"
+        android:name="com.example.nicejobapplication.fragment.EditCvFragment"
+        android:label="fragment_edit_cv"
+        tools:layout="@layout/fragment_edit_cv" />
+    <fragment
+        android:id="@+id/jobDetail"
+        android:name="com.example.nicejobapplication.DetailFragment.JobDetail"
+        android:label="fragment_job_detail"
+        tools:layout="@layout/fragment_job_detail" >
+        <action
+            android:id="@+id/action_jobDetail_to_chooseCVApplication"
+            app:destination="@id/chooseCVApplication" />
+        <action
+            android:id="@+id/action_jobDetail_to_corporationDetail"
+            app:destination="@id/corporationDetail" />
+    </fragment>
+    <fragment
+        android:id="@+id/searchViewJob"
+        android:name="com.example.nicejobapplication.fragment.SearchViewJob"
+        android:label="fragment_search_view_job"
+        tools:layout="@layout/fragment_search_view_job" >
+        <action
+            android:id="@+id/action_searchViewJob_to_jobDetail"
+            app:destination="@id/jobDetail" />
+    </fragment>
+    <fragment
+        android:id="@+id/chooseCVApplication"
+        android:name="com.example.nicejobapplication.fragment.apply.ChooseCVApplication"
+        android:label="fragment_choose_c_v_application"
+        tools:layout="@layout/fragment_choose_c_v_application" />
+    <fragment
+        android:id="@+id/createCVFragment"
+        android:name="com.example.nicejobapplication.fragment.CreateCVFragment"
+        android:label="fragment_create_cv"
+        tools:layout="@layout/fragment_create_cv" />
+    <fragment
+        android:id="@+id/viewMoreJob"
+        android:name="com.example.nicejobapplication.fragment.ViewMoreJob"
+        android:label="fragment_view_more_job"
+        tools:layout="@layout/fragment_view_more_job" >
+        <action
+            android:id="@+id/action_viewMoreJob_to_jobDetail"
+            app:destination="@id/jobDetail" />
+    </fragment>
+    <fragment
+        android:id="@+id/searchViewCorp"
+        android:name="com.example.nicejobapplication.fragment.SearchViewCorp"
+        android:label="fragment_search_view_corp"
+        tools:layout="@layout/fragment_search_view_corp" />
+
+</navigation>

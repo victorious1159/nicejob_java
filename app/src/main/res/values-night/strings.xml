@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="noneCVChosenError">Không có CV nào được chọn! Vui lòng chọn một CV để tiếp tục.</string>
+</resources>

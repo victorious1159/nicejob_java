@@ -1,0 +1,35 @@
+<resources>
+    <string name="app_name">NiceJobApplication</string>
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="viec_lam">Việc Làm</string>
+    <string name="cong_ty">Công ty</string>
+    <string name="cv" translatable="false">CV</string>
+    <string name="tai_khoan" translatable="false">Tài khoản</string>
+    <string name="your_web_client_id" translatable="false">435824472766-u271gqusddniqqsmcdu93ge8qjleaas8.apps.googleusercontent.com435824472766-u271gqusddniqqsmcdu93ge8qjleaas8.apps.googleusercontent.com</string>
+
+    <string name="facebook_app_id">149872034703943</string>
+    <string name="fb_login_protocol_scheme">fb149872034703943</string>
+    <string name="facebook_client_token">f10168926f4a4527cbee76f95202c66d</string>
+    <string name="noneCVChosenError">Không có CV nào được chọn! Vui lòng chọn một CV để tiếp tục.</string>
+
+    <string-array name="exp">
+        <item>No experience</item>
+        <item>1 year</item>
+        <item>2 years</item>
+        <item>3 years</item>
+        <item>4 years</item>
+        <item>5 years</item>
+        <item>over 5 years</item>
+    </string-array>
+
+    <string-array name="salary">
+        <item>under $ 500</item>
+        <item>$ 500 - $ 1000</item>
+        <item>$ 1000 - $ 2000</item>
+        <item>over $ 2000</item>
+    </string-array>
+    <string-array name="gentle">
+        <item>Male</item>
+        <item>FeMale</item>
+    </string-array>
+</resources>

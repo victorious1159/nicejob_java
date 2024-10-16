@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/jobsFragment"
+        android:enabled="true"
+        android:icon="@drawable/work_48px"
+        android:title="@string/viec_lam"/>
+    <item
+        android:id="@+id/corpFragment"
+        android:enabled="true"
+        android:icon="@drawable/apartment_48px"
+        android:title="@string/cong_ty"/>
+    <item
+        android:id="@+id/CVFragment"
+        android:enabled="true"
+        android:icon="@drawable/cv_48px"
+        android:title="@string/cv"/>
+    <item
+        android:id="@+id/profileFragment"
+        android:enabled="true"
+        android:icon="@drawable/person_48px"
+        android:title="@string/tai_khoan"/>
+
+</menu>

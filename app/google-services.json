@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "435824472766",
+    "firebase_url": "https://nicejob-367709-default-rtdb.asia-southeast1.firebasedatabase.app",
+    "project_id": "nicejob-367709",
+    "storage_bucket": "nicejob-367709.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:435824472766:android:358354ebba475206eb24ef",
+        "android_client_info": {
+          "package_name": "com.example.nicejobapplication"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "435824472766-1glbka3ne2f7rfk71kqtu4iha4r8u4p1.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.nicejobapplication",
+            "certificate_hash": "24b967d535882dd685207cd91ce1d2825fba895a"
+          }
+        },
+        {
+          "client_id": "435824472766-u271gqusddniqqsmcdu93ge8qjleaas8.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAAUo9FFb429haaJiHsA6LRbi6V953TOho"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "435824472766-c8lnel5q2jeeilmspttunimunbe3a247.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

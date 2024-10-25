@@ -108,7 +108,9 @@ public class SignupTabFragment extends Fragment {
                                 .addOnFailureListener(e -> Toast.makeText(getActivity(), e.toString(), Toast.LENGTH_SHORT).show());
                     }
                 } else {
-                    Toast.makeText(getActivity(), "Something went wrong, try again", Toast.LENGTH_SHORT).show();
+                    task.addOnFailureListener(e -> {
+                        Toast.makeText(getActivity(), e.getMessage(), Toast.LENGTH_SHORT).show();
+                    });
                 }
             });
         }

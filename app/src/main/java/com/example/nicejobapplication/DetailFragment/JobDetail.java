@@ -109,7 +109,7 @@ public class JobDetail extends Fragment {
             db.collection("corporations").document(corpId).get().addOnSuccessListener(corp -> {
                 String corpLogoUrl = corp.getString("corpLogo");
                 binding.corpName.setText(corp.getString("corpName"));
-                String urlImage = "gs://nicejob-367709.appspot.com/corporation_image/" + corpLogoUrl;
+                String urlImage = "gs://nicejob2-ddaa1.appspot.com/corporation_image/" + corpLogoUrl;
                 StorageReference storageRef = FirebaseStorage.getInstance().getReferenceFromUrl(urlImage);
                 storageRef.getDownloadUrl().addOnSuccessListener(uri -> Glide.with(requireContext()).load(uri).into(binding.corpLogo));
             });

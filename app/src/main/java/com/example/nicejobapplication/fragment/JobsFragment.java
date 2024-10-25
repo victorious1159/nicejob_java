@@ -16,7 +16,6 @@ import androidx.navigation.fragment.NavHostFragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.bumptech.glide.Glide;
 import com.example.nicejobapplication.R;
 import com.example.nicejobapplication.adapter.JobsAdapter;
 import com.example.nicejobapplication.adapter.OnItemClickListener;
@@ -31,6 +30,9 @@ import com.google.firebase.firestore.Query;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
 
 import java.util.ArrayList;
+import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 public class JobsFragment extends Fragment implements OnItemClickListener {
     private FragmentJobsBinding binding;
@@ -43,8 +45,9 @@ public class JobsFragment extends Fragment implements OnItemClickListener {
     private FirebaseFirestore db;
     private RecyclerView rvJobs;
     private Bundle bundle;
+    private static final Logger logger = Logger.getLogger(JobsFragment.class.getName());
 
-    @SuppressLint("MissingInflatedId")
+    //    @SuppressLint("MissingInflatedId")
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -98,17 +101,22 @@ public class JobsFragment extends Fragment implements OnItemClickListener {
                             String corpId = document.getString("corpId");
                             int expId = document.getLong("expId").intValue();
                             int salaryId = document.getLong("salaryId").intValue();
-                            String[] workAddress = new String[]{document.getString("workAddress")};
+                            List<String> workAddressList = (List<String>) document.get("workAddress");
+                            String[] workAddress = workAddressList.toArray(new String[0]);
                             Timestamp deadline = document.getTimestamp("deadline");
 
                             Jobs job = new Jobs(jobId, jobName, corpId, expId, salaryId, workAddress, deadline);
                             newestJobList.add(job);
+                            logger.log(Level.INFO, job.toString());
                         }
 
                         rvJobs = binding.rvNewestJob;
                         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(requireContext(), LinearLayoutManager.HORIZONTAL, false);
                         rvJobs.setLayoutManager(linearLayoutManager);
                         rvJobs.setAdapter(new JobsAdapter(requireContext(), newestJobList, this));
+                    } else {
+                        Log.e("FirestoreError", "Error getting documents: ", task.getException());
+                        Toast.makeText(requireContext(), task.getException().toString(), Toast.LENGTH_SHORT).show();
                     }
                 });
     }

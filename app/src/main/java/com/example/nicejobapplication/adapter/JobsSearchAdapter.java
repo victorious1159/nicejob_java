@@ -70,7 +70,7 @@ public class JobsSearchAdapter extends RecyclerView.Adapter<JobsSearchAdapter.Jo
         // Lấy logo công ty
         db.collection("corporations").document(item.getCorpID()).get().addOnSuccessListener(documentSnapshot -> {
             if (documentSnapshot.exists()) {
-                String urlImage = "gs://nicejob-367709.appspot.com/corporation_image/" + documentSnapshot.getString("corpLogo");
+                String urlImage = "gs://nicejob2-ddaa1.appspot.com/corporation_image/" + documentSnapshot.getString("corpLogo");
                 StorageReference storageRef = FirebaseStorage.getInstance().getReferenceFromUrl(urlImage);
                 storageRef.getDownloadUrl().addOnSuccessListener(uri -> {
                     Glide.with(holder.itemView.getContext())

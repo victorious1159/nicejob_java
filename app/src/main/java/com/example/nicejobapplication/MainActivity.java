@@ -10,6 +10,7 @@ import androidx.navigation.ui.NavigationUI;
 import com.example.nicejobapplication.databinding.ActivityMainBinding;
 import com.facebook.AccessToken;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
+import com.google.firebase.FirebaseApp;
 import com.google.firebase.auth.FirebaseAuth;
 
 public class MainActivity extends AppCompatActivity {
@@ -33,6 +34,7 @@ public class MainActivity extends AppCompatActivity {
         NavigationUI.setupWithNavController(bottomNavigation, navController);
 
         firebaseAuth = FirebaseAuth.getInstance();
+        FirebaseApp.initializeApp(this);
 
         navController.addOnDestinationChangedListener((controller, destination, arguments) -> {
             switch (destination.getId()) {

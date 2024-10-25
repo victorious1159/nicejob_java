@@ -62,7 +62,7 @@ public class SearchViewCorp extends Fragment implements OnClickCorpListener {
                         document.getId(),
                         document.getString("corpName"),
                         document.getString("corpDescription"),
-                        "gs://nicejob-367709.appspot.com/corporation_image/" + document.getString("corpLogo")
+                        "gs://nicejob2-ddaa1.appspot.com/corporation_image/" + document.getString("corpLogo")
                 );
                 corpItem.add(corp);
             }

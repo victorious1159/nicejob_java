@@ -53,7 +53,7 @@ public class CorpFragment extends Fragment implements OnClickCorpListener {
                                 String corpID = document.getId();
                                 String corpName = document.getString("corpName");
                                 String corpDescription = document.getString("corpDescription");
-                                String corpLogo = "gs://nicejob-367709.appspot.com/corporation_image/" + document.getString("corpLogo");
+                                String corpLogo = "gs://nicejob2-ddaa1.appspot.com/corporation_image/" + document.getString("corpLogo");
                                 Corporation corp = new Corporation(corpID, corpName, corpDescription, corpLogo);
                                 corpArrayList.add(corp);
                             }

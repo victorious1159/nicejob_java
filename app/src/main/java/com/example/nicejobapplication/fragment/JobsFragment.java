@@ -136,7 +136,8 @@ public class JobsFragment extends Fragment implements OnItemClickListener {
                             String corpId = document.getString("corpId");
                             int expId = document.getLong("expId").intValue();
                             int salaryId = document.getLong("salaryId").intValue();
-                            String[] workAddress = new String[]{document.getString("workAddress")};
+                            List<String> workAddressList = (List<String>) document.get("workAddress");
+                            String[] workAddress = workAddressList.toArray(new String[0]);
                             Timestamp deadline = document.getTimestamp("deadline");
 
                             Jobs job = new Jobs(jobId, jobName, corpId, expId, salaryId, workAddress, deadline);

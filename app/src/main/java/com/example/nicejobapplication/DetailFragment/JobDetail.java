@@ -22,6 +22,8 @@ import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 
+import java.util.List;
+
 public class JobDetail extends Fragment {
 
     private FirebaseFirestore db;
@@ -79,7 +81,7 @@ public class JobDetail extends Fragment {
                     document.getString("corpId"),
                     Integer.parseInt(document.get("numOfRecruit").toString()),
                     Integer.parseInt(document.get("genderJob").toString()),
-                    new String[]{document.getString("workAddress")},
+                    new String[]{document.get("workAddress").toString()},
                     0,
                     Integer.parseInt(document.get("expId").toString()),
                     Integer.parseInt(document.get("wayToWorkId").toString()),
@@ -88,9 +90,9 @@ public class JobDetail extends Fragment {
                     0,
                     Timestamp.now(),
                     document.getTimestamp("deadline"),
-                    new String[]{document.getString("jobDescription")},
-                    new String[]{document.getString("recruitRequire")},
-                    new String[]{document.getString("benefit")}
+                    new String[]{document.get("jobDescription").toString()},
+                    new String[]{document.get("recruitRequire").toString()},
+                    new String[]{document.get("benefit").toString()}
             );
 
             binding.jobName.setText(job.getJobName());

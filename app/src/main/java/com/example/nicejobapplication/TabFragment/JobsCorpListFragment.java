@@ -24,6 +24,8 @@ import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
 
 import java.util.ArrayList;
+import java.util.Map;
+import java.util.logging.Logger;
 
 public class JobsCorpListFragment extends Fragment implements OnItemClickListener {
 
@@ -38,6 +40,7 @@ public class JobsCorpListFragment extends Fragment implements OnItemClickListene
     public JobsCorpListFragment(Bundle bundleCorpId) {
         this.bundleCorpId = bundleCorpId;
     }
+    Logger logger = Logger.getLogger(JobsCorpListFragment.class.getName());
 
     @Nullable
     @Override
@@ -64,12 +67,13 @@ public class JobsCorpListFragment extends Fragment implements OnItemClickListene
 
                             newestJobList = new ArrayList<>();
                             for (QueryDocumentSnapshot document : task.getResult()) {
+                                Map<String, Object> data = document.getData();
                                 String jobId = document.getId();
                                 String jobName = document.getString("jobTitle");
                                 String corpId1 = document.getString("corpId");
-                                int expId = Integer.parseInt(document.getString("expId"));
-                                int salaryId = Integer.parseInt(document.getString("salaryId"));
-                                String[] workAddress = {document.getString("workAddress")};
+                                int expId = data.get("expId") != null ? Integer.parseInt(data.get("expId").toString()) : 0;
+                                int salaryId = data.get("salaryId") != null ? Integer.parseInt(data.get("salaryId").toString()) : 0;
+                                String[] workAddress = data.get("workAddress") != null ? new String[]{data.get("workAddress").toString()} : null;
                                 Timestamp deadline = (Timestamp) document.get("deadline");
 
                                 Jobs job = new Jobs(jobId, jobName, corpId1, expId, salaryId, workAddress, deadline);
@@ -80,6 +84,9 @@ public class JobsCorpListFragment extends Fragment implements OnItemClickListene
                             rvJobs.setLayoutManager(linearLayoutManager);
                             rvJobs.setAdapter(new JobsAdapter(requireContext(), newestJobList, this));
                         }
+                    }else{
+                        Toast.makeText(requireContext(), task.getException().toString(), Toast.LENGTH_LONG).show();
+                        logger.warning(task.getException().toString());
                     }
                 })
                 .addOnFailureListener(e -> Toast.makeText(requireContext(), e.getMessage(), Toast.LENGTH_LONG).show());

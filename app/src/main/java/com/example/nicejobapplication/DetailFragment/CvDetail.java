@@ -12,6 +12,8 @@ import com.bumptech.glide.Glide;
 import com.example.nicejobapplication.databinding.FragmentCvDetailBinding;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.FirebaseFirestore;
+
+import java.util.Map;
 import java.util.Objects;
 
 public class CvDetail extends Fragment {
@@ -38,17 +40,18 @@ public class CvDetail extends Fragment {
                 .collection(userEmail).document(Objects.requireNonNull(documentID))
                 .get()
                 .addOnSuccessListener(document -> {
-                    String cvName = Objects.requireNonNull(document.getData()).get("cvName").toString();
-                    String avatar = Objects.requireNonNull(document.getData().get("avatar")).toString();
-                    String employerName = Objects.requireNonNull(document.getData().get("employerName")).toString();
-                    String email = Objects.requireNonNull(document.getData().get("email")).toString();
-                    String phoneNumber = Objects.requireNonNull(document.getData().get("phoneNumber")).toString();
-                    String gentle = Objects.requireNonNull(document.getData().get("gentle")).toString();
-                    String address = Objects.requireNonNull(document.getData().get("address")).toString();
-                    String dayOfBirth = Objects.requireNonNull(document.getData().get("dayOfBirth")).toString();
-                    String careerGoal = Objects.requireNonNull(document.getData().get("careerGoal")).toString();
-                    String workExperience = Objects.requireNonNull(document.getData().get("workExperience")).toString();
-                    String academicLevel = Objects.requireNonNull(document.getData().get("academicLevel")).toString();
+                    Map<String, Object> data = document.getData();
+                    String cvName = data.get("cvName").toString();
+                    String avatar = data.get("avatar").toString();
+                    String employerName = data.get("employerName").toString();
+                    String email = data.get("email").toString();
+                    String phoneNumber = data.get("phoneNumber").toString();
+                    String gentle = data.get("gender").toString();
+                    String address = data.get("address").toString();
+                    String dayOfBirth = data.get("dayOfBirth").toString();
+                    String careerGoal = data.get("careerGoal").toString();
+                    String workExperience = data.get("workExperience").toString();
+                    String academicLevel = data.get("academicLevel").toString();
 
                     binding.txtCvNameView.setText(cvName);
                     Glide.with(requireActivity()).load(avatar).into(binding.avtViewCV);

@@ -25,6 +25,7 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.FirebaseFirestore;
 
 import java.util.ArrayList;
+import java.util.Map;
 
 public class CVFragment extends Fragment implements OnItemClickCVListener {
     private FragmentCvBinding binding;
@@ -58,19 +59,35 @@ public class CVFragment extends Fragment implements OnItemClickCVListener {
             db = FirebaseFirestore.getInstance();
             db.collection("created_cv").document(userEmail).collection(userEmail)
                     .get()
-                    .addOnSuccessListener(queryDocumentSnapshots -> {
-                        if (!queryDocumentSnapshots.isEmpty()) {
+                    .addOnCompleteListener(task -> {
+                        if (task.isSuccessful()) {
                             cvArrayList = new ArrayList<>();
-                            for (com.google.firebase.firestore.DocumentSnapshot document : queryDocumentSnapshots.getDocuments()) {
-                                CV cv = document.toObject(CV.class);
+                            for (com.google.firebase.firestore.DocumentSnapshot document : task.getResult()) {
+                                Map<String, Object> data = document.getData();
+                                CV cv = new CV(
+                                        document.getId(),
+                                        data.get("cvName").toString(),
+                                        data.get("avatar").toString(),
+                                        data.get("employerName").toString(),
+                                        data.get("email").toString(),
+                                        data.get("phoneNumber").toString(),
+                                        data.get("gender").toString(),
+                                        data.get("address").toString(),
+                                        data.get("dayOfBirth").toString(),
+                                        data.get("careerGoal").toString(),
+                                        data.get("workExperience").toString(),
+                                        data.get("academicLevel").toString(),
+                                        document.getLong("createdAt")
+                                );
                                 if (cv != null) {
-                                    cv.setCvId(document.getId()); // Giả định CV có phương thức setCvId()
+                                    cv.setCvId(document.getId()); // Assuming CV has a setCvId() method
                                     cvArrayList.add(cv);
                                 }
                             }
-
                             rvCv.setAdapter(new CvAdapter(getActivity(), cvArrayList, this));
                             rvCv.getAdapter().notifyDataSetChanged();
+                        } else {
+                            Toast.makeText(getActivity(), task.getException().toString(), Toast.LENGTH_SHORT).show();
                         }
                     })
                     .addOnFailureListener(e -> Toast.makeText(getActivity(), e.toString(), Toast.LENGTH_SHORT).show());

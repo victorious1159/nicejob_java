@@ -49,7 +49,7 @@ public class CorporationDetail extends Fragment {
                 .get()
                 .addOnSuccessListener(document -> {
                     String corpName = Objects.requireNonNull(document.getData()).get("corpName").toString();
-                    String corpLogo = "gs://nicejob2-ddaa1.appspot.com/corporation_image/" + Objects.requireNonNull(document.getData().get("corpLogo")).toString();
+                    String corpLogo = "gs://nicejob2-ddaa1.appspot.com/corporation_image/" + Objects.requireNonNull(document.getData().get("corpLogo"));
 
                     String corpDescription = Objects.requireNonNull(document.getData().get("corpDescription")).toString();
                     String corpWebsite = document.getData().get("website").toString().isEmpty() ?

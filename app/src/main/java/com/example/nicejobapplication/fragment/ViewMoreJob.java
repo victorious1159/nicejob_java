@@ -24,6 +24,7 @@ import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.firestore.Query;
 
 import java.util.ArrayList;
+import java.util.Map;
 
 public class ViewMoreJob extends Fragment implements OnItemClickListener {
     private FragmentViewMoreJobBinding binding;
@@ -66,13 +67,16 @@ public class ViewMoreJob extends Fragment implements OnItemClickListener {
                 .addOnCompleteListener(task -> {
                     if (task.isSuccessful()) {
                         internshipJobList = new ArrayList<>();
-                        for (QueryDocumentSnapshot document : task.getResult()) {  // Thay 'var' bằng 'QueryDocumentSnapshot'
+                        for (QueryDocumentSnapshot document : task.getResult()) {  // T
+                            Map<String, Object> data = document.getData();// hay 'var' bằng 'QueryDocumentSnapshot'
                             String jobId = document.getId();
                             String jobName = document.getString("jobTitle");
                             String corpId = document.getString("corpId");
-                            int expId = Integer.parseInt(document.getString("expId"));
-                            int salaryId = Integer.parseInt(document.getString("salaryId"));
-                            String[] workAddress = new String[]{document.getString("workAddress").replace("[", "").replace("]", "")};
+                            int expId = data.get("expId") != null ? Integer.parseInt(data.get("expId").toString()) : 0;
+                            int salaryId = data.get("salaryId") != null ? Integer.parseInt(data.get("salaryId").toString()) : 0;
+
+                            String[] workAddress = data.get("workAddress") != null ? new String[]{data.get("workAddress").toString()} : null;
+
                             Timestamp deadline = (Timestamp) document.get("deadline");
 
                             Jobs job = new Jobs(jobId, jobName, corpId, expId, salaryId, workAddress, deadline);
@@ -94,13 +98,14 @@ public class ViewMoreJob extends Fragment implements OnItemClickListener {
                 .addOnCompleteListener(task -> {
                     if (task.isSuccessful()) {
                         newestJobList = new ArrayList<>();
-                        for (QueryDocumentSnapshot document : task.getResult()) {  // Thay 'var' bằng 'QueryDocumentSnapshot'
+                        for (QueryDocumentSnapshot document : task.getResult()) {
+                            Map<String, Object> data = document.getData();
                             String jobId = document.getId();
                             String jobName = document.getString("jobTitle");
                             String corpId = document.getString("corpId");
-                            int expId = Integer.parseInt(document.getString("expId"));
-                            int salaryId = Integer.parseInt(document.getString("salaryId"));
-                            String[] workAddress = new String[]{document.getString("workAddress").replace("[", "").replace("]", "")};
+                            int expId = data.get("expId") != null ? Integer.parseInt(data.get("expId").toString()) : 0;
+                            int salaryId = data.get("salaryId") != null ? Integer.parseInt(data.get("salaryId").toString()) : 0;
+                            String[] workAddress = data.get("workAddress") != null ? new String[]{data.get("workAddress").toString()} : null;
                             Timestamp deadline = (Timestamp) document.get("deadline");
 
                             Jobs job = new Jobs(jobId, jobName, corpId, expId, salaryId, workAddress, deadline);

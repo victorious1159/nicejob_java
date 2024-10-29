@@ -16,6 +16,7 @@ import androidx.navigation.fragment.NavHostFragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.bumptech.glide.Glide;
 import com.example.nicejobapplication.R;
 import com.example.nicejobapplication.adapter.JobsAdapter;
 import com.example.nicejobapplication.adapter.OnItemClickListener;
@@ -82,8 +83,27 @@ public class JobsFragment extends Fragment implements OnItemClickListener {
     }
 
     private void loadUserProfile() {
-        // Implement your logic to load the user's profile data here
-        // Similar to the original Kotlin implementation
+        if (auth.getCurrentUser() != null) {
+            String userId = auth.getCurrentUser().getUid();
+            db.collection("users").document(userId).get().addOnCompleteListener(task -> {
+                if (task.isSuccessful() && task.getResult() != null) {
+                    String userName = task.getResult().getString("name");
+                    String avatarUrl = task.getResult().getString("avatarUrl");
+
+                    if (userName != null) {
+                        binding.txtNameHome.setText("Xin Chào " + userName);
+                    }
+
+                    if (avatarUrl != null) {
+                        Glide.with(this)
+                                .load(avatarUrl)
+                                .into(binding.profileButtonHome);
+                    }
+                } else {
+                    Log.e("FirestoreError", "Error getting user profile", task.getException());
+                }
+            });
+        }
     }
 
     private void loadNewestJobs(Timestamp currentTimestamp) {
@@ -115,7 +135,7 @@ public class JobsFragment extends Fragment implements OnItemClickListener {
                         rvJobs.setLayoutManager(linearLayoutManager);
                         rvJobs.setAdapter(new JobsAdapter(requireContext(), newestJobList, this));
                     } else {
-                        Log.e("FirestoreError", "Error getting documents: ", task.getException());
+                        Log.e("FirestoreError", task.getException().toString());
                         Toast.makeText(requireContext(), task.getException().toString(), Toast.LENGTH_SHORT).show();
                     }
                 });
